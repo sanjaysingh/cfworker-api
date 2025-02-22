@@ -1,4 +1,4 @@
-name = "api-worker"
+name = "api"
 main = "src/api-worker.js"
 compatibility_date = "2024-03-20"
 
