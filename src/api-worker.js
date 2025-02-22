@@ -1,9 +1,5 @@
-import { handleTimeRequest } from './handlers/timeHandler'
+import { routesConfig } from './routes/config'
 import { errorResponse } from './utils/responseHelper'
-
-const routes = {
-  '/time': handleTimeRequest
-}
 
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
@@ -11,10 +7,10 @@ addEventListener('fetch', event => {
 
 async function handleRequest(request) {
   const url = new URL(request.url)
-  const handler = routes[url.pathname]
+  const route = routesConfig[url.pathname]
   
-  if (handler) {
-    return handler(request)
+  if (route) {
+    return route.handler(request)
   }
   
   return errorResponse()
