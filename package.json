@@ -7,9 +7,14 @@
     "dev": "wrangler dev",
     "start": "wrangler dev",
     "deploy": "wrangler deploy",
-    "build": "echo 'No build step required'"
+    "build": "echo 'No build step required'",
+    "audit-fix": "npm audit fix"
   },
   "devDependencies": {
     "wrangler": "^3.30.0"
+  },
+  "resolutions": {
+    "rollup-plugin-inject": "@rollup/plugin-inject",
+    "sourcemap-codec": "@jridgewell/sourcemap-codec"
   }
 } 
