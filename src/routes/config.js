@@ -5,6 +5,7 @@ import { handleIpRequest } from '../handlers/ipHandler'
 import { handleHealthRequest } from '../handlers/healthHandler'
 import { handleHashRequest } from '../handlers/hashHandler'
 import { handleDnsRequest } from '../handlers/dnsHandler'
+import { handleEchoRequest } from '../handlers/echoHandler'
 
 export const routesConfig = {
   '/': {
@@ -29,10 +30,14 @@ export const routesConfig = {
   },
   '/hash': {
     handler: handleHashRequest,
-    description: 'Generate hash (SHA-1, SHA-256, SHA-384, SHA-512) of input text. Usage: /hash?text=hello&algorithm=sha256'
+    description: 'Generate hash of input text. Example: <a href="/hash?text=hello&algorithm=sha256">Get SHA-256 hash of "hello"</a>'
   },
   '/dns': {
     handler: handleDnsRequest,
-    description: 'DNS lookup for a domain. Usage: /dns?domain=example.com&type=A'
+    description: 'DNS lookup for a domain. Example: <a href="/dns?domain=google.com&type=A">Lookup A records for google.com</a>'
+  },
+  '/echo': {
+    handler: handleEchoRequest,
+    description: 'Echo back request details. Example: <a href="/echo?foo=bar">Echo request with query params</a>'
   }
 } 
