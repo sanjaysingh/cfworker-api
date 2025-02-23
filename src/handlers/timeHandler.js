@@ -20,17 +20,27 @@ export function handleTimeZonesRequest() {
 
 // Get current time in multiple formats
 export function handleTimeNowRequest() {
-  const now = new Date()
-  
-  const timeFormats = {
-    est: formatTimeForZone(now, 'America/New_York', '-05:00'),
-    pst: formatTimeForZone(now, 'America/Los_Angeles', '-08:00'),
-    mst: formatTimeForZone(now, 'America/Denver', '-07:00'),
-    ist: formatTimeForZone(now, 'Asia/Kolkata', '+05:30'),
-    utc: now.toISOString().replace(/\.\d{3}Z$/, 'Z')  // Remove milliseconds
+  try {
+    const now = new Date()
+    const timeZones = Intl.supportedValuesOf('timeZone')
+    const timeFormats = {}
+
+    // Add all time zones
+    timeZones.forEach(zone => {
+      const offset = getTimezoneOffset(now, zone)
+      timeFormats[zone] = formatTimeForZone(now, zone, offset)
+    })
+
+    // Add UTC time
+    timeFormats.UTC = now.toISOString().replace(/\.\d{3}Z$/, 'Z')
+
+    return jsonResponse(timeFormats)
+  } catch (error) {
+    return jsonResponse({
+      error: 'Failed to process time request',
+      message: error.message
+    }, 500)
   }
-  
-  return jsonResponse(timeFormats)
 }
 
 function formatTimeForZone(date, timezone, offset) {
@@ -50,4 +60,18 @@ function formatTimeForZone(date, timezone, offset) {
   const [month, day, year] = datePart.split('/')
   
   return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}T${timePart} GMT${offset}`
+}
+
+function getTimezoneOffset(date, timeZone) {
+  // Get the timezone offset in minutes
+  const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }))
+  const tzDate = new Date(date.toLocaleString('en-US', { timeZone: timeZone }))
+  const offset = (utcDate - tzDate) / 60000
+
+  // Convert offset to "±HH:mm" format
+  const hours = Math.floor(Math.abs(offset) / 60)
+  const minutes = Math.abs(offset) % 60
+  const sign = offset <= 0 ? '+' : '-'
+
+  return `${sign}${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
 } 
