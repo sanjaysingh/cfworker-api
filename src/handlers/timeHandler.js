@@ -23,16 +23,16 @@ export function handleTimeNowRequest() {
   try {
     const now = new Date()
     const timeZones = Intl.supportedValuesOf('timeZone')
-    const timeFormats = {}
+    const timeFormats = {
+      // Add UTC time first
+      UTC: now.toISOString().replace(/\.\d{3}Z$/, 'Z')
+    }
 
     // Add all time zones
-    timeZones.forEach(zone => {
+    timeZones.sort().forEach(zone => {
       const offset = getTimezoneOffset(now, zone)
       timeFormats[zone] = formatTimeForZone(now, zone, offset)
     })
-
-    // Add UTC time
-    timeFormats.UTC = now.toISOString().replace(/\.\d{3}Z$/, 'Z')
 
     return jsonResponse(timeFormats)
   } catch (error) {
