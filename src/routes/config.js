@@ -42,6 +42,6 @@ export const routesConfig = {
   },
   '/echo': {
     handler: handleEchoRequest,
-    description: 'Echo back request details. Example: <a href="/echo?foo=bar">Echo request with query params</a>'
+    description: 'Echo back request details including headers, method etc.'
   }
 } 

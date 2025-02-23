@@ -11,7 +11,6 @@ export async function handleEchoRequest(request) {
     method: request.method,
     url: request.url,
     path: url.pathname,
-    query: Object.fromEntries(url.searchParams),
     headers,
     cf: request.cf // Cloudflare-specific request data
   }
