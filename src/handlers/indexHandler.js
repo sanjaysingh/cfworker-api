@@ -2,11 +2,13 @@ import { htmlResponse } from '../utils/responseHelper'
 import { routesConfig } from '../routes/config'
 
 export function handleIndexRequest() {
-  // Convert routes object to array of {path, description}
-  const apis = Object.entries(routesConfig).map(([path, route]) => ({
-    path,
-    description: route.description
-  }))
+  // Convert routes object to array of {path, description}, excluding root path
+  const apis = Object.entries(routesConfig)
+    .filter(([path]) => path !== '/') // Filter out the root path
+    .map(([path, route]) => ({
+      path,
+      description: route.description
+    }))
 
   const html = `
     <!DOCTYPE html>
