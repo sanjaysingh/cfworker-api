@@ -42,6 +42,6 @@ export const routesConfig = {
   },
   '/echo': {
     handler: handleEchoRequest,
-    description: 'Echo back request details including headers, method etc.'
+    description: 'Echo back what server sees in the request.'
   }
 } 
