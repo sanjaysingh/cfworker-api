@@ -1,4 +1,4 @@
-import { handleTimeRequest } from '../handlers/nowHandler'
+import { handleTimeZonesRequest, handleTimeNowRequest } from '../handlers/timeHandler'
 import { handleIndexRequest } from '../handlers/indexHandler'
 import { handleUuidRequest } from '../handlers/uuidHandler'
 import { handleIpRequest } from '../handlers/ipHandler'
@@ -10,11 +10,15 @@ import { handleEchoRequest } from '../handlers/echoHandler'
 export const routesConfig = {
   '/': {
     handler: handleIndexRequest,
-    description: 'API Index'
+    description: 'API Index page'
   },
-  '/now': {
-    handler: handleTimeRequest,
-    description: 'Get current time in multiple timezones'
+  '/time/zones': {
+    handler: handleTimeZonesRequest,
+    description: 'Get list of all available IANA time zones'
+  },
+  '/time/now': {
+    handler: handleTimeNowRequest,
+    description: 'Get current time in multiple formats.'
   },
   '/uuid': {
     handler: handleUuidRequest,

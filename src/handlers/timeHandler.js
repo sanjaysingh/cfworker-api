@@ -1,6 +1,25 @@
 import { jsonResponse } from '../utils/responseHelper'
 
-export async function handleTimeRequest() {
+// Get list of all IANA time zones
+export function handleTimeZonesRequest() {
+  try {
+    // Get the full list of time zones using Intl.supportedValuesOf
+    const timeZones = Intl.supportedValuesOf('timeZone')
+    
+    return jsonResponse({
+      count: timeZones.length,
+      zones: timeZones
+    })
+  } catch (error) {
+    return jsonResponse({
+      error: 'Failed to retrieve time zones',
+      message: error.message
+    }, 500)
+  }
+}
+
+// Get current time in multiple formats
+export function handleTimeNowRequest() {
   const now = new Date()
   
   const timeFormats = {
