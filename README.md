@@ -9,7 +9,7 @@ A collection of utility APIs built with Cloudflare Workers, providing various he
   - `/time/now` - Get current time in multiple formats
 
 - **UUID Generation**
-  - `/uuid` - Generate random UUID v4 (returns in lowercase and uppercase formats)
+  - `/uuid` - Generate random UUID v4 (returns in lowercase and uppercase formats, supports multiple UUIDs)
 
 - **Health Check**
   - `/health` - API health check status
@@ -82,17 +82,31 @@ Returns current time in multiple formats.
 
 ### UUID Generation
 ```
-GET /uuid
+GET /uuid?count=<number>
 ```
-Generates a random UUID v4 and returns it in two formats:
-- `uuid_lower`: Lowercase format
-- `uuid_upper`: Uppercase format
+Generates one or more random UUID v4s and returns them in lowercase and uppercase formats.
+
+Parameters:
+- `count`: Number of UUIDs to generate (default: 1, max: 50)
 
 Example response:
 ```json
 {
-  "uuid_lower": "550e8400-e29b-41d4-a716-446655440000",
-  "uuid_upper": "550E8400-E29B-41D4-A716-446655440000"
+  "count": 3,
+  "uuids": [
+    {
+      "uuid_lower": "550e8400-e29b-41d4-a716-446655440000",
+      "uuid_upper": "550E8400-E29B-41D4-A716-446655440000"
+    },
+    {
+      "uuid_lower": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+      "uuid_upper": "6BA7B810-9DAD-11D1-80B4-00C04FD430C8"
+    },
+    {
+      "uuid_lower": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+      "uuid_upper": "7C9E6679-7425-40DE-944B-E07FC1F90AE7"
+    }
+  ]
 }
 ```
 
