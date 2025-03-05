@@ -188,7 +188,7 @@ export function handleIndexRequest() {
 <body>
   <div class="container">
     <header>
-      <h1>CFWorker API</h1>
+      <h1>Utility APIs</h1>
       <p class="subtitle">A collection of utility APIs built with Cloudflare Workers, providing various helpful endpoints for common operations.</p>
     </header>
 
