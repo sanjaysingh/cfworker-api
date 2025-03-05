@@ -22,7 +22,7 @@ export const routesConfig = {
   },
   '/uuid': {
     handler: handleUuidRequest,
-    description: 'Generate a random UUID v4'
+    description: 'Generate random UUID v4s (default: 1, max: 50) in both lowercase and uppercase formats. Example: <a href="/uuid?count=3">Generate 3 UUIDs</a>'
   },
   '/health': {
     handler: handleHealthRequest,
@@ -42,6 +42,6 @@ export const routesConfig = {
   },
   '/location': {
     handler: handleLocationRequest,
-    description: 'Get detailed location information about the caller including country, city, coordinates, and device details.'
+    description: 'Get detailed location information about the caller like country, city, etc.'
   }
 } 

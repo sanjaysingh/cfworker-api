@@ -9,7 +9,7 @@ A collection of utility APIs built with Cloudflare Workers, providing various he
   - `/time/now` - Get current time in multiple formats
 
 - **UUID Generation**
-  - `/uuid` - Generate random UUID v4 (returns in lowercase and uppercase formats, supports multiple UUIDs)
+  - `/uuid?count=N` - Generate N random UUID v4s (default: 1, max: 50) in both lowercase and uppercase formats
 
 - **Health Check**
   - `/health` - API health check status
