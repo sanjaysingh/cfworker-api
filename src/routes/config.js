@@ -1,11 +1,11 @@
 import { handleTimeZonesRequest, handleTimeNowRequest } from '../handlers/timeHandler'
 import { handleIndexRequest } from '../handlers/indexHandler'
 import { handleUuidRequest } from '../handlers/uuidHandler'
-import { handleIpRequest } from '../handlers/ipHandler'
 import { handleHealthRequest } from '../handlers/healthHandler'
 import { handleHashRequest } from '../handlers/hashHandler'
 import { handleDnsRequest } from '../handlers/dnsHandler'
 import { handleEchoRequest } from '../handlers/echoHandler'
+import { handleLocationRequest } from '../handlers/locationHandler'
 
 export const routesConfig = {
   '/': {
@@ -24,10 +24,6 @@ export const routesConfig = {
     handler: handleUuidRequest,
     description: 'Generate a random UUID v4'
   },
-  '/ip': {
-    handler: handleIpRequest,
-    description: 'Get IP address and request information'
-  },
   '/health': {
     handler: handleHealthRequest,
     description: 'API health check status'
@@ -43,5 +39,9 @@ export const routesConfig = {
   '/echo': {
     handler: handleEchoRequest,
     description: 'Echo back what server sees in the request.'
+  },
+  '/location': {
+    handler: handleLocationRequest,
+    description: 'Get detailed location information about the caller including country, city, coordinates, and device details.'
   }
 } 
