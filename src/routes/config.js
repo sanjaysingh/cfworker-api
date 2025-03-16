@@ -24,10 +24,6 @@ export const routesConfig = {
     handler: handleUuidRequest,
     description: 'Generate random UUID v4s (default: 1, max: 50) in both lowercase and uppercase formats. Example: <a href="/uuid?count=3">Generate 3 UUIDs</a>'
   },
-  '/health': {
-    handler: handleHealthRequest,
-    description: 'API health check status'
-  },
   '/hash': {
     handler: handleHashRequest,
     description: 'Generate hash of input text. Example: <a href="/hash?text=hello&algorithm=sha256">Get SHA-256 hash of "hello"</a>'
@@ -35,10 +31,6 @@ export const routesConfig = {
   '/dns': {
     handler: handleDnsRequest,
     description: 'DNS lookup for a domain. Example: <a href="/dns?domain=google.com&type=A">Lookup A records for google.com</a>'
-  },
-  '/echo': {
-    handler: handleEchoRequest,
-    description: 'Echo back what server sees in the request.'
   },
   '/location': {
     handler: handleLocationRequest,
