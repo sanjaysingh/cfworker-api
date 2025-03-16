@@ -2,22 +2,28 @@ import { htmlResponse } from '../utils/responseHelper'
 import { routesConfig } from '../routes/config'
 
 export function handleIndexRequest() {
-  // Convert routes object to array of {path, description}, excluding root path
+  // Convert routes object to array of {path, description, example}, excluding root path
   const apis = Object.entries(routesConfig)
     .filter(([path]) => path !== '/') // Filter out the root path
     .map(([path, route]) => ({
       path,
-      description: route.description
+      description: route.description,
+      example: route.example
     }))
 
   // Generate HTML for each API card
-  const apisHtml = apis.map(api => `
+  const apisHtml = apis.map(api => {
+    const targetUrl = api.example ? api.example.url : api.path;
+    const description = api.description + (api.example ? ` Example: <a href="${api.example.url}">${api.example.description}</a>` : '');
+    
+    return `
     <div class="api-card">
-      <a href="${api.path}" class="api-path">${api.path}</a>
-      <p class="api-description">${api.description}</p>
-      <a href="${api.path}" class="badge">GET</a>
+      <a href="${targetUrl}" class="api-path">${api.path}</a>
+      <p class="api-description">${description}</p>
+      <a href="${targetUrl}" class="badge">GET</a>
     </div>
-  `).join('')
+    `;
+  }).join('')
 
   const html = `<!DOCTYPE html>
 <html lang="en">
