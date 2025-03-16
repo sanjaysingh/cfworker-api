@@ -20,9 +20,6 @@ A collection of utility APIs built with Cloudflare Workers, providing various he
 - **DNS Lookup**
   - `/dns` - DNS lookup for a domain (e.g., `/dns?domain=google.com&type=A`)
 
-- **Request Echo**
-  - `/echo` - Echo back what server sees in the request
-
 - **Location Information**
   - `/location` - Get detailed location information about the caller including country, city, coordinates, and device details
 
@@ -110,12 +107,6 @@ Example response:
 }
 ```
 
-### Health Check
-```
-GET /health
-```
-Returns the API health status.
-
 ### Hash Generation
 ```
 GET /hash?text=<text>&algorithm=<algorithm>
@@ -136,11 +127,6 @@ Parameters:
 - `domain`: The domain to look up
 - `type`: The DNS record type (e.g., A, AAAA, MX)
 
-### Request Echo
-```
-GET /echo
-```
-Returns all information about the request as seen by the server.
 
 ### Location Information
 ```

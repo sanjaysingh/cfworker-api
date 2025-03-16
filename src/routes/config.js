@@ -1,10 +1,8 @@
 import { handleTimeZonesRequest, handleTimeNowRequest } from '../handlers/timeHandler'
 import { handleIndexRequest } from '../handlers/indexHandler'
 import { handleUuidRequest } from '../handlers/uuidHandler'
-import { handleHealthRequest } from '../handlers/healthHandler'
 import { handleHashRequest } from '../handlers/hashHandler'
 import { handleDnsRequest } from '../handlers/dnsHandler'
-import { handleEchoRequest } from '../handlers/echoHandler'
 import { handleLocationRequest } from '../handlers/locationHandler'
 
 export const routesConfig = {
