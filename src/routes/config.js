@@ -29,7 +29,7 @@ export const routesConfig = {
   },
   '/hash': {
     handler: handleHashRequest,
-    description: 'Generate hash of input text.',
+    description: 'Generate hash of input text. Supported algorithms: sha1, sha256 (default), sha384, sha512.',
     example: {
       url: '/hash?text=hello&algorithm=sha256',
       description: 'Get SHA-256 hash of "hello"'

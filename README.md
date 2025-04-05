@@ -115,7 +115,7 @@ Generates a hash of the input text using the specified algorithm.
 
 Parameters:
 - `text`: The text to hash
-- `algorithm`: The hashing algorithm to use (e.g., sha256, md5)
+- `algorithm`: The hashing algorithm to use (Supported: sha1, sha256 (default), sha384, sha512)
 
 ### DNS Lookup
 ```
